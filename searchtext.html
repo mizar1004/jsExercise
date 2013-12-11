@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>searchtext</title>
+		<meta name="author" content="astro" />
+		<!-- Date: 2013-12-10 -->
+		<script type="text/javascript">
+			/*jshint multistr:true */
+			var text = "she astro and he astru make it dancing. Astro carries it with her and astru sees astro coming.";
+			var text = text.toLowerCase();
+			
+			/* Original Code was here:
+
+			for (var i = 0; i < text.length; i++) {
+			    if (text[i] === myName[0]) {
+			        var textTemp = "";
+			        var position = 0;
+			        for (var j = i; j <= (myName.length + i); j++) {
+			            if (text[j] === myName[(j-i)]) {
+			                textTemp += text[j];
+			            }
+			        }
+			        if (textTemp.length == myName.length) {
+			            position = i;
+			            hits.push([textTemp, position]);
+			        }
+			    }
+			}
+			
+			if (hits.length == 0) {
+			    console.log("Your name was not found!");
+			}
+			else {
+			    console.log(hits);
+			    console.log(hits.length);
+			}
+			*/
+			
+			/* Exercise: Modularization. This may return an object which has some methods. */
+
+			var hits = function () {
+				return {
+				//	enterText: function(t) {
+				//		searchText = t;
+				//		alert("Do you want to search " + searchText +"?");
+				//	},
+					findText: function(t) {
+//					var findText = function (t) {
+						searchText = t;
+						alert("Do you want to search " + searchText +"?");
+												
+						var hitsArray = [];
+						for (var i = 0; i < text.length; i++) {
+						    if (text[i] === searchText[0]) {
+						        var textTemp = "";
+						        var position = 0;
+						        for (var j = i; j <= (searchText.length + i); j++) {
+						            if (text[j] === searchText[(j-i)]) {
+						                textTemp += text[j];
+						            }
+						        }
+						        if (textTemp.length == searchText.length) {
+						            position = i;
+						            hitsArray.push([textTemp, position]);
+						        }
+					   		 }
+						}
+						if (hitsArray.length == 0) {
+			    			alert("Nothing was found!");
+			    			return -1;
+						}
+						else {
+			  				alert(hitsArray.length + " of result(s) matched to '" + searchText + "'.");
+			  				return hitsArray.length;
+						}
+					}
+//					};
+//					return findText;
+				};
+			};
+
+			var findText01 = hits();
+//			findText01.enterText("astro");
+			findText01.findText("astro");
+			
+			var findText02 = hits();
+//			findText02.enterText("astru");
+			findText02.findText("astru");
+			
+//			alert(hits("astro"));
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>
+

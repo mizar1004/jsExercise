@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>serialmaker</title>
+		<meta name="author" content="astro" />
+		<!-- Date: 2013-12-09 -->
+		<script type="text/javascript">
+			var serialMaker = function () {
+				var prefix = "";
+				var seq = 0;
+				
+				return {
+					setPrefix : function (p) {
+						prefix = "'"+ p +"'";
+						//prefix = String(p);
+					},
+					setSequence : function (s) {
+						seq = s;
+					},
+					genSym : function () {
+						var serial = prefix + seq;
+						seq ++;
+						return serial;
+					}
+				};
+			};
+			
+			var seqer = serialMaker();
+			//seqer.setPrefix("A");
+			seqer.setPrefix(A);
+			seqer.setSequence(5000);
+			
+			var serialA01 = seqer.genSym();
+			alert(serialA01);
+			var serialA02 = seqer.genSym();
+			alert(serialA02);
+
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>
+

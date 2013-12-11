@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>RPS</title>
+		<meta name="author" content="astro" />
+		<!-- Date: 2013-12-07 -->
+		<script type="text/javascript">
+			/*
+			Our code will break the game into 3 phases:
+			a. User makes a choice
+			b. Computer makes a choice
+			c. A compare function will determine who wins
+			*/
+
+			var result = "";
+			var playersPick = "";
+			var computersPick = "";			
+			
+			function initGame () {
+				var result = "";
+				var playersPick = "";
+				var computersPick = "";		
+			}
+			
+			function startGame () {
+				document.getElementById("start").value = "Play A Game!";						
+				document.getElementById("rock").disabled = false;
+				document.getElementById("paper").disabled = false;
+				document.getElementById("scissors").disabled = false;
+			}
+			
+			function judge(pick) {
+				var computerChoose = function () {
+					var pickTemp = Math.floor(Math.random() * 3);
+					switch (pickTemp) {
+						case 0 : 
+							computersPick = "rock";
+							break;
+						case 1 : 
+							computersPick = "paper";
+							break;
+						case 2 : 
+							computersPick = "scissors";
+							break;
+					}
+					document.getElementById('computerspick').innerHTML = computersPick;
+//					setTimeout(function() {document.getElementById('computerspick').innerHTML = computersPick;}, 3000);								
+				}();
+
+				if (playersPick == computersPick) {
+					result = "TIE!";
+				}
+				else {
+					switch (playersPick) {
+						case "rock" :
+							if (computersPick == "paper") {
+								result = "You Win!";
+							}
+							else {
+								result = "You Lost!";
+							}
+							break;
+						case "paper" :
+							if (computersPick == "rock") {
+								result = "You Lost!";
+							}
+							else {
+								result = "You Win!";
+							}
+							break;
+						case "scissors" :
+							if (computersPick == "rock") {
+								result = "You Lost!";
+							}
+							else {
+								result = "You Win!";
+							}
+							break;	
+					}
+				}
+				document.getElementById("result").innerHTML = result;
+				document.getElementById("start").value = "Wanna Play Again?";
+			}
+		</script>
+	</head>
+	<body onload="initGame();">
+		<h1>Rock, Paper, Scissors!</h1>
+		<div id="head">
+			<input id="start" type="button" value="" onclick="startGame();"/>
+		</div>
+		<div id="result"></div>
+		<div id="player">
+			<h2>Player</h2>
+			<div id="playerspick"></div>
+			<input id="rock" type="button" value="rock" disabled="disabled" onclick="judge(this.value);"/>
+			<input id="paper" type="button" value="paper" disabled="disabled" onclick="judge(this.value);"/>
+			<input id="scissors" type="button" value="scissors" disabled="disabled" onclick="judge(this.value);"/>
+		</div> 
+		<div id="computer">
+			<h2>Computer</h2>
+			<div id="computerspick"></div>
+		</div>	</body>
+</html>
+
